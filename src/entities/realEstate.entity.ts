@@ -7,9 +7,11 @@ import {
   OneToOne,
   JoinColumn,
   ManyToOne,
+  OneToMany,
 } from "typeorm";
 import { Address } from "./address.entity";
 import { Category } from "./category.entity";
+import { Schedule } from "./shedule.entity";
 
 @Entity("real_estate")
 class RealEstate {
@@ -36,8 +38,11 @@ class RealEstate {
   address: Address;
 
   @ManyToOne(() => Category, (categories) => categories.realEstates)
-  @JoinColumn()
   category: Category;
+
+  @OneToMany(() => Schedule, (shedules_users_properties) => shedules_users_properties.realEstate)
+  schedules: Schedule[]
+
 }
 
 export { RealEstate };
