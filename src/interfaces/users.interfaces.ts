@@ -1,4 +1,4 @@
-import { Repository } from "typeorm";
+import { DeepPartial, Repository } from "typeorm";
 import { z } from "zod";
 import { User } from "../entities";
 import { returnMultipleUserSchema, returnUserSchema, updateUserSchema, userSchema } from "../schemas/users.schemas";
@@ -6,7 +6,7 @@ import { returnMultipleUserSchema, returnUserSchema, updateUserSchema, userSchem
 type iUserRequest = z.infer<typeof userSchema>
 type iUserReturn = z.infer<typeof returnUserSchema>
 type iUsersReturn = z.infer<typeof returnMultipleUserSchema>
-type iUserUpdate = z.infer<typeof updateUserSchema>
+type iUserUpdate = DeepPartial<iUserRequest>
 type iUserRepository = Repository<User>
 
 export {
