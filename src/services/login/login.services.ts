@@ -25,7 +25,7 @@ const loginService = async (loginData: iLogin): Promise<string> => {
 
     const token: string = sign(
         {
-            amin: findUserByEmail.admin,
+            admin: findUserByEmail.admin,
             email: findUserByEmail.email
         },
         String(process.env.SECRET_KEY),
