@@ -18,14 +18,14 @@ class User {
     @Column({length: 120})
     password: string
 
-    @CreateDateColumn()
-    createdAt: Date | string
+    @CreateDateColumn({type: "date"})
+    createdAt: string
 
-    @UpdateDateColumn()
-    updatedAt: Date | string 
+    @UpdateDateColumn({type: "date"})
+    updatedAt: string 
 
-    @DeleteDateColumn()
-    deletedAt: Date | string
+    @DeleteDateColumn({type: "date"})
+    deletedAt: string | null
 
     @BeforeInsert()
     @BeforeUpdate()
