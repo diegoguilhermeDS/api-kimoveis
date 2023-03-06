@@ -4,21 +4,28 @@ import { User } from "../entities";
 import { AppError } from "../errors";
 import { iUserRepository } from "../interfaces/users.interfaces";
 
-const ensuresEmailNotExists = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
+const ensuresEmailNotExists = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+): Promise<Response | void> => {
+  const userData = req.body;
 
-    const userData = req.body
+  if (userData.email) {
+    const userRepository: iUserRepository = AppDataSource.getRepository(User);
 
-    if(userData.email){
-        const userRepository: iUserRepository = AppDataSource.getRepository(User)
+    const user = await userRepository.findOne({
+        where: {email: userData.email},
+        withDeleted: true,
+      });
 
-        const user = await userRepository.findOneBy({email: userData.email})
 
-        if(user){
-            throw new AppError("Email already exists", 409)
-        }
+    if (user) {
+      throw new AppError("Email already exists", 409);
     }
+  }
 
-    return next()
-}
+  return next();
+};
 
-export default ensuresEmailNotExists
+export default ensuresEmailNotExists;

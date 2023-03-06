@@ -7,9 +7,10 @@ const ensuresUserIsAdmin = (
   next: NextFunction
 ): void => {
   const isAdmin = req.user.admin;
+  const method = req.method
   
   if (!isAdmin) {
-    if(+req.params.id !== req.user.id){
+    if(+req.params.id !== req.user.id || method === "DELETE"){
       throw new AppError("Insufficient permission", 403);
     }
   }
