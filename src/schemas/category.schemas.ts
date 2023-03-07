@@ -8,7 +8,7 @@ const returnCategory = categorySchema.extend({
     id: z.number()
 })
 
-const returnMultipleCategorySchema = categorySchema.array()
+const returnMultipleCategorySchema = returnCategory.array()
 
 export {
     categorySchema,
