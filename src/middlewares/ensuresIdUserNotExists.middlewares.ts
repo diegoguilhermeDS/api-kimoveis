@@ -4,7 +4,7 @@ import { User } from "../entities";
 import { AppError } from "../errors";
 import { iUserRepository } from "../interfaces/users.interfaces";
 
-const ensuresIdUserNotExists = async (req: Request, res: Response, next: NextFunction) => {
+const ensuresIdUserNotExists = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
 
     const userId: number = parseInt(req.params.id)
 

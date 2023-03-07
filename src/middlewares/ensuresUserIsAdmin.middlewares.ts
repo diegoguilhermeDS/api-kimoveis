@@ -13,6 +13,11 @@ const ensuresUserIsAdmin = (
     if(+req.params.id !== req.user.id || method === "DELETE"){
       throw new AppError("Insufficient permission", 403);
     }
+
+    if(req.baseUrl === "/categories"){
+      throw new AppError("Insufficient permission", 403);
+    }
+
   }
 
   return next();

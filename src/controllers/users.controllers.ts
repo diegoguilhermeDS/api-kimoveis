@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import { iUserUpdate } from "../interfaces/users.interfaces";
 import createUserService from "../services/users/createUser.services";
-import deleteUserService from "../services/users/deleteUserServices";
+import deleteUserService from "../services/users/deleteUser.services";
 import listUserService from "../services/users/listUsers.services";
 import updateUserService from "../services/users/updateUser.services";
 
