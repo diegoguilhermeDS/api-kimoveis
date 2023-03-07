@@ -3,7 +3,7 @@ import { AppError } from "../errors";
 import jwt from "jsonwebtoken";
 import "dotenv/config"
 
-const ensuresTokenIsValid = (req: Request, res: Response, next: NextFunction) => {
+const ensuresTokenIsValid = (req: Request, res: Response, next: NextFunction): void => {
 
     let token = req.headers.authorization
 
