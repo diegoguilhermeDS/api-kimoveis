@@ -1,17 +1,21 @@
 import { NextFunction, Request, Response } from "express";
 import { AppDataSource } from "../data-source";
-import { RealEstate } from "../entities";
+import { Address, RealEstate } from "../entities";
 import { AppError } from "../errors";
-import { iRealEstateRepository } from "../interfaces/realEstate.interfaces";
+import { iAddressRepository, iRealEstateRepository } from "../interfaces/realEstate.interfaces";
 
 const ensuresRealEstateNotExists = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
 
-    const realEstateRepository: iRealEstateRepository = AppDataSource.getRepository(RealEstate)
+    const addressRepository: iAddressRepository = AppDataSource.getRepository(Address)
 
-    const findRealEstate = await realEstateRepository.findOneBy({address: req.body.address})
-    console.log(findRealEstate);
+    const findAddress = await addressRepository.count({
+        where: {
+            street: req.body.address.street,
+            zipCode: req.body.address.zipCode
+        }
+    })
     
-    if(findRealEstate){
+    if(findAddress){
         throw new AppError("Address already exists", 409)
     }
     

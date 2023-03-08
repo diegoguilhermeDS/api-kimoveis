@@ -14,7 +14,7 @@ const ensuresUserIsAdmin = (
       throw new AppError("Insufficient permission", 403);
     }
 
-    if(req.baseUrl === "/users"){
+    if(req.baseUrl !== "/users"){
       throw new AppError("Insufficient permission", 403);
     }
 
