@@ -15,7 +15,7 @@ const createRealEstateController = async (req: Request, res: Response) => {
 const listRealEstatesController = async (req: Request, res: Response) => {
 
     const realEstates = await listRealEstatesService()
-
+    
     return res.json(realEstates)
 }
 

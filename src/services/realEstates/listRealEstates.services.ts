@@ -9,13 +9,12 @@ const listRealEstatesService = async (): Promise<iRealEstatesReturn> => {
 
     const realEstates = await realEstateRepository.find({
         relations: {
-            address: true,
-            category: true
+            address: true
         }
     })
-    
-    const ListRealEstate = returnMultipleRealEstateSchema.parse(realEstates)
 
+    const ListRealEstate = returnMultipleRealEstateSchema.parse(realEstates)
+    
     return ListRealEstate
 }
 

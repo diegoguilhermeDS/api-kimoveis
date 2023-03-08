@@ -3,7 +3,7 @@ import { z } from "zod";
 const addressSchema = z.object({
     street: z.string().min(3).max(45),
     zipCode: z.string().max(8),
-    number: z.string().nullish(),
+    number: z.string().max(7).nullish(),
     city: z.string().min(2).max(20),
     state: z.string().max(2)
 })
@@ -28,22 +28,18 @@ const returnRealEstateSchema = realEstateSchema.extend({
         name: z.string()
     }).nullable(),
     address: returnAddressSchema,
-    createdAt: z.string(),
-    updatedAt: z.string()
+    createdAt: z.date(),
+    updatedAt: z.date()
 }).omit({categoryId: true})
 
 const returnMultipleRealEstateSchema =  z.object({
     id: z.number(),
     value: z.string().or(z.number()),
     size: z.number(),
-    solid: z.boolean(),
+    sold: z.boolean(),
     address: returnAddressSchema,
-    category: z.object({
-        id: z.number(),
-        name: z.string()
-    }).nullable(),
-    createdAt: z.date(),
-    updatedAt: z.date()
+    createdAt: z.string(),
+    updatedAt: z.string()
 }).array()
 
 export {
