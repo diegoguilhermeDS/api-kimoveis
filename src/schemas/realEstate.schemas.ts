@@ -28,8 +28,8 @@ const returnRealEstateSchema = realEstateSchema.extend({
         name: z.string()
     }).nullable(),
     address: returnAddressSchema,
-    createdAt: z.date(),
-    updatedAt: z.date()
+    createdAt: z.string(),
+    updatedAt: z.string()
 }).omit({categoryId: true})
 
 const returnMultipleRealEstateSchema =  z.object({
