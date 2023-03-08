@@ -21,7 +21,7 @@ class RealEstate {
   @Column({ type: "boolean", default: false, nullable: true })
   sold: boolean;
 
-  @Column({ type: "decimal", precision: 12, scale: 2 })
+  @Column({ type: "decimal", precision: 12, scale: 2 , default: 0})
   value: number | string;
 
   @Column({ type: "integer" })
