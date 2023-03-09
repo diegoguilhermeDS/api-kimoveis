@@ -8,7 +8,7 @@ const ensuresEmailNotExists = async (
   req: Request,
   res: Response,
   next: NextFunction
-): Promise<Response | void> => {
+): Promise<void> => {
   const userData = req.body;
 
   if (userData.email) {
