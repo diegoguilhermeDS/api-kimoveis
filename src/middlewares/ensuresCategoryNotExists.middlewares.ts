@@ -4,7 +4,7 @@ import { Category } from "../entities";
 import { AppError } from "../errors";
 import { iCategoryRepository, iCategoryRequest } from "../interfaces/category.interfaces";
 
-const ensuresCategoryExists = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+const ensuresCategoryNotExists = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
 
     const catergoryData: iCategoryRequest = req.body
 
@@ -19,4 +19,4 @@ const ensuresCategoryExists = async (req: Request, res: Response, next: NextFunc
     return next()
 }   
 
-export default ensuresCategoryExists
+export default ensuresCategoryNotExists

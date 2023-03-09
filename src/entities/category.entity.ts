@@ -10,7 +10,7 @@ class Category {
     name: string
 
     @OneToMany(() => RealEstate, real_estate => real_estate.category)
-    realEstates: RealEstate[]
+    realEstate: RealEstate[]
 }
 
 export { Category }
