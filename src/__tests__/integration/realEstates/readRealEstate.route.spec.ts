@@ -31,7 +31,7 @@ describe('GET /realEstate', () => {
       status: 200,
       expectBody: readRealEstate,
     };
-
+    
     expect(response.status).toBe(expectResults.status);
     expect(response.body).toEqual(expectResults.expectBody);
   });

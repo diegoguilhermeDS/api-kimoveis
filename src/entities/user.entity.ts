@@ -1,4 +1,6 @@
-import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, DeleteDateColumn } from "typeorm";
+import { getRounds, hashSync } from "bcryptjs";
+import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, DeleteDateColumn, BeforeInsert, BeforeUpdate, OneToMany } from "typeorm";
+import { Schedule } from "./shedule.entity";
 
 @Entity("users")
 class User {
@@ -17,14 +19,26 @@ class User {
     @Column({length: 120})
     password: string
 
-    @CreateDateColumn()
-    createdAt: Date | string
+    @CreateDateColumn({type: "date"})
+    createdAt: string
 
-    @UpdateDateColumn()
-    updatedAt: Date | string 
+    @UpdateDateColumn({type: "date"})
+    updatedAt: string 
 
-    @DeleteDateColumn()
-    deletedAt: Date | string
+    @DeleteDateColumn({type: "date"})
+    deletedAt: string | null
+
+    @OneToMany(() => Schedule, (shedules_users_properties) => shedules_users_properties.user)
+    schedules: Schedule[]
+
+    @BeforeInsert()
+    @BeforeUpdate()
+    hashPassword(){
+        const isEncrypted = getRounds(this.password)
+        if(!isEncrypted){
+            this.password = hashSync(this.password, 10)
+        }
+    }
 }
 
 export { User }
