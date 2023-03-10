@@ -1,5 +1,6 @@
 import { getRounds, hashSync } from "bcryptjs";
-import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, DeleteDateColumn, BeforeInsert, BeforeUpdate } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, DeleteDateColumn, BeforeInsert, BeforeUpdate, OneToMany } from "typeorm";
+import { Schedule } from "./shedule.entity";
 
 @Entity("users")
 class User {
@@ -26,6 +27,9 @@ class User {
 
     @DeleteDateColumn({type: "date"})
     deletedAt: string | null
+
+    @OneToMany(() => Schedule, (shedules_users_properties) => shedules_users_properties.user)
+    schedules: Schedule[]
 
     @BeforeInsert()
     @BeforeUpdate()
