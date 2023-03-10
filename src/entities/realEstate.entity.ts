@@ -13,7 +13,7 @@ import { Address } from "./address.entity";
 import { Category } from "./category.entity";
 import { Schedule } from "./shedule.entity";
 
-@Entity("real_estate")
+@Entity("real_estates")
 class RealEstate {
   @PrimaryGeneratedColumn()
   id: number;
