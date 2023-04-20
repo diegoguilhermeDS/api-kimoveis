@@ -4,6 +4,7 @@
     "dev": "ts-node-dev --cls --rs --ignore-watch node_modules src/server.ts",
     "build": "tsc",
     "start": "node dist/server.js",
+    "migration:prod" : "yarn typeorm migration:run -d dist/data-source",
     "typeorm": "typeorm-ts-node-commonjs"
   },
   "dependencies": {
