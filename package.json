@@ -2,6 +2,8 @@
   "scripts": {
     "test": "jest --verbose --runInBand",
     "dev": "ts-node-dev --cls --rs --ignore-watch node_modules src/server.ts",
+    "build": "tsc",
+    "start": "node dist/server.js",
     "typeorm": "typeorm-ts-node-commonjs"
   },
   "dependencies": {
