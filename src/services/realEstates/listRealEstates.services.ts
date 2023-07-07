@@ -12,7 +12,7 @@ const listRealEstatesService = async (): Promise<iRealEstatesReturn> => {
             address: true
         }
     })
-
+    
     const ListRealEstate = returnMultipleRealEstateSchema.parse(realEstates)
     
     return ListRealEstate
